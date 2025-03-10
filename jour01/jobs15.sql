@@ -1,0 +1,1 @@
+ select nom from etudiant order by nom asc;

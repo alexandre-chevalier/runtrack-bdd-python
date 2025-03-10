@@ -1,0 +1,1 @@
+delete from etudiant where nom = 'john';
