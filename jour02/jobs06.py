@@ -8,8 +8,7 @@ myDb = mysql.connector.connect(
 
 mycursor = myDb.cursor()
 
-mycursor.execute("select nom, capacite from salle")
-
+mycursor.execute("select sum(capacite) from salle")
 
 for i in mycursor:
-    print(i)
+    print(f'la capacite de toutes les salles est de :  {i[0]}')
