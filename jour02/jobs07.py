@@ -12,35 +12,39 @@ class Employe:
         return cursor, myDb
 
     def create(self,connex):
-        cursor, _ = connex
-        id =int(input('veuillez entrez un id : '))
+        cursor, myDb  = connex
         nom = input('veuillez entrez le nom de votre employe : ')
         prenom = input('veuillez entrez le prenom de votre employe : ')
         salaire = int(input('veuillez entrez votre salaire'))
         id_service = int(input("veuillez entrez le numero de service : "))
 
-        query = 'insert into employe values (%s,%s,%s,%s,%s)'
-        cursor.execute(query, (id,nom,prenom,salaire, id_service))
+        query = 'insert into employe (nom,prenom,salaire, id_service) values (%s,%s,%s,%s)'
+        cursor.execute(query, (nom,prenom,salaire, id_service))
+        myDb.commit()
 
     
     def read(self, connex):
-        cursor, _ = connex
+        cursor, myDb  = connex
         cursor.execute('select * from employe')
-
         for i in cursor:
             print(i)
+        myDb.commit()
 
 
     def update(self, connex):
-        cursor, _ = connex
-        salaire = int(input('veuillez entrez le nouveau prenom : '))
+        cursor, myDb  = connex
+        salaire = int(input('veuillez entrez le nouveau salaire : '))
         id = int(input('veuillez entrez lid que vous voulez modifier : '))
-        cursor.execute(f'update employe set salaire = {salaire} where id = {id}')
+        query = 'update employe set salaire = %s where id = %s'
+        cursor.execute(query, (salaire, id))
+        myDb.commit()
 
     def delete(self, connex):
-        cursor, _ = connex
-        id = int(input('veuillez entrez l id que vous voulez modifier : '))
-        cursor.execute(f'delete from employe where id = {id}')
+        cursor, myDb = connex
+        id = int(input('veuillez entrez l id que vous voulez supprimer : '))
+        query = 'delete from employe where id = %s'
+        cursor.execute(query, (id,))
+        myDb.commit()
 
 
 
