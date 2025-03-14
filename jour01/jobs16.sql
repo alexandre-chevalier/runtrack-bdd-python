@@ -1,1 +1,1 @@
- select * from etudiant where prenom like 'b%';
+select * from etudiant where prenom like 'b%';

@@ -4,6 +4,7 @@ import mysql.connector
 class Employe:
     def connexion(self):
         myDb = mysql.connector.connect(
+            host="localhost",
             user='root',
             password='root',
             database='entreprise'
